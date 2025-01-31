@@ -50,7 +50,10 @@ def handle_student(call):
     """Обработчик кнопки 'Студент'"""
     delete_previous_message(call.message.chat.id, call.message.message_id)
     user_roles[call.message.chat.id] = "student"
-    bot.send_message(call.message.chat.id, "Вы зарегистрированы как студент. Используйте /menu, чтобы открыть меню.")
+  #  bot.send_message(call.message.chat.id, "Вы зарегистрированы как студент. Используйте /menu, чтобы открыть меню.")
+    bot_instance = TelegramBot(bot)
+
+    bot_instance.send_menu(call.message.chat.id)
 
 @bot.message_handler(commands=['menu'])
 def open_menu(message):

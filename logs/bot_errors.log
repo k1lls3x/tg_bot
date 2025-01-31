@@ -1,0 +1,96 @@
+2025-01-28 19:43:49,087 - ERROR - Infinity polling: polling exited
+2025-01-28 19:43:49,089 - ERROR - Break infinity polling
+2025-01-28 19:44:40,156 - ERROR - Infinity polling: polling exited
+2025-01-28 19:44:40,156 - ERROR - Break infinity polling
+2025-01-28 19:44:53,573 - ERROR - ������ ����������� ����������� ����� F:\\: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: there is no text in the message to edit
+2025-01-28 19:45:31,592 - ERROR - Infinity polling: polling exited
+2025-01-28 19:45:31,592 - ERROR - Break infinity polling
+2025-01-28 20:08:13,090 - ERROR - ������ ����������� ����������� ����� F:\\: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: there is no text in the message to edit
+2025-01-28 20:11:37,205 - ERROR - Infinity polling: polling exited
+2025-01-28 20:11:37,206 - ERROR - Break infinity polling
+2025-01-28 20:11:54,062 - ERROR - Infinity polling exception: FileManagerBot.__init__() takes 2 positional arguments but 3 were given
+2025-01-28 20:11:54,063 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\mista\Desktop\botok\main.py", line 46, in handle_student
+    bot_instance = TelegramBot(bot, FILES_FOLDER)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\mista\Desktop\botok\functional_student_code\student_menu.py", line 8, in __init__
+    self.file_manager = FileManagerBot(bot, files_folder)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FileManagerBot.__init__() takes 2 positional arguments but 3 were given
+
+2025-01-28 20:11:59,047 - ERROR - Infinity polling exception: FileManagerBot.__init__() takes 2 positional arguments but 3 were given
+2025-01-28 20:11:59,048 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\mista\Desktop\botok\main.py", line 46, in handle_student
+    bot_instance = TelegramBot(bot, FILES_FOLDER)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\mista\Desktop\botok\functional_student_code\student_menu.py", line 8, in __init__
+    self.file_manager = FileManagerBot(bot, files_folder)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FileManagerBot.__init__() takes 2 positional arguments but 3 were given
+
+2025-01-28 20:12:02,610 - ERROR - Infinity polling exception: FileManagerBot.__init__() takes 2 positional arguments but 3 were given
+2025-01-28 20:12:02,610 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\mista\Desktop\botok\main.py", line 46, in handle_student
+    bot_instance = TelegramBot(bot, FILES_FOLDER)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\mista\Desktop\botok\functional_student_code\student_menu.py", line 8, in __init__
+    self.file_manager = FileManagerBot(bot, files_folder)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FileManagerBot.__init__() takes 2 positional arguments but 3 were given
+
+2025-01-28 20:12:49,069 - ERROR - Infinity polling: polling exited
+2025-01-28 20:12:49,070 - ERROR - Break infinity polling
+2025-01-28 20:13:07,835 - ERROR - ������ ����������� ����������� ����� F:\\: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: there is no text in the message to edit
+2025-01-28 20:13:45,913 - ERROR - Infinity polling: polling exited
+2025-01-28 20:13:45,914 - ERROR - Break infinity polling
+2025-01-28 20:15:10,092 - ERROR - ������ ����������� ����������� ����� F:\\: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: there is no text in the message to edit
+2025-01-28 20:22:10,033 - ERROR - Infinity polling: polling exited
+2025-01-28 20:22:10,033 - ERROR - Break infinity polling

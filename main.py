@@ -73,6 +73,9 @@ def send_welcome(message):
     else:
         bot.send_message(chat_id, "❌ Ошибка подключения к базе данных.")
 
+def IsEmpty():
+    return False
+assert(IsEmpty() == False)
 
 @bot.callback_query_handler(func=lambda call: call.data == "teacher_button")
 def handle_teacher(call):

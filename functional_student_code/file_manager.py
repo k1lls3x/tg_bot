@@ -3,7 +3,7 @@ import logging
 import requests
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-folder_path = r"A:\\test"
+folder_path = r"D:\\"
 path_dict = {}
 
 def get_unique_id(path):
@@ -131,23 +131,20 @@ class FileManagerBot:
                 return
 
             url = f"https://api.telegram.org/bot{self.bot.token}/sendDocument"
+            
             with open(path, "rb") as file:
                 response = requests.post(
-                url,
-                data={"chat_id": call.message.chat.id},  # <-- Добавляем chat_id
-                files={"document": file}
+                    url,
+                    data={"chat_id": call.message.chat.id},
+                    files={"document": file}
                 )
 
             if response.status_code == 200:
-                file_id = response.json().get("result", {}).get("document", {}).get("file_id")
-                if file_id:
-                    self.bot.send_document(call.message.chat.id, file_id, caption=f"Файл: {os.path.basename(path)}")
-                else:
-                    self.bot.send_message(call.message.chat.id, "Ошибка получения File ID")
+                self.bot.answer_callback_query(call.id, "Файл отправлен!")
             else:
-                logging.error(f"Ошибка загрузки файла в Telegram API: {response.text}")
-                self.bot.send_message(call.message.chat.id, "Ошибка загрузки файла")
-
+                logging.error(f"Ошибка загрузки файла: {response.text}")
+                self.bot.send_message(call.message.chat.id, "Ошибка отправки файла")
+        
         except Exception as e:
             logging.error(f"Ошибка отправки файла: {e}")
             self.bot.send_message(call.message.chat.id, "Ошибка при отправке файла")

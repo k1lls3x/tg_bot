@@ -1,6 +1,7 @@
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 from functional_student_code.student_menu import TelegramBot  # Импорт студенческого меню
+from connect_to_sql import SqlConnection
 import shutil
 
 TOKEN = "8056279378:AAGX8tILI43XHYhJrQC3JF3xUFUoyPCr9vY"
@@ -8,7 +9,14 @@ TOKEN = "8056279378:AAGX8tILI43XHYhJrQC3JF3xUFUoyPCr9vY"
 bot = telebot.TeleBot(TOKEN)
 
 user_roles = {}  # Словарь для хранения ролей пользователей
-
+#SqlConnection.get_connection()
+conn, cursor = SqlConnection.get_connection()
+if conn and cursor:
+    cursor.execute("SHOW TABLES;")
+    tables = cursor.fetchall()
+    print("📂 Таблицы в базе данных:", [table[0] for table in tables])
+    SqlConnection.close_connection(conn, cursor)
+    
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     """Обработчик команды /start"""
@@ -22,7 +30,9 @@ def send_welcome(message):
         BotCommand("start", "Перезапуск"),
         BotCommand("menu", "Открыть меню"),
         BotCommand("help", "Помощь"),
-        BotCommand("meow", "Сказать meow")
+        BotCommand("meow", "Сказать meow"),
+        BotCommand("clear", "Очистить чат")
+        
     ])
     
     bot.send_message(
@@ -34,7 +44,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['help'])
 def send_help(message):
     bot.send_message(message.chat.id, "Вам никто не поможет.")
-
+    
 @bot.message_handler(commands=['meow'])
 def send_meow(message):
     bot.send_message(message.chat.id, "meow")
@@ -55,6 +65,21 @@ def handle_student(call):
     bot_instance = TelegramBot(bot)
 
     bot_instance.send_menu(call.message.chat.id)
+@bot.message_handler(commands=['clear'])
+def clear_chat(message):
+    """Удаляет все сообщения, отправленные ботом"""
+    chat_id = message.chat.id
+    message_id = message.message_id
+
+    for i in range(200):  # Попытка удалить последние 200 сообщений
+        try:
+            bot.delete_message(chat_id, message_id - i)
+        except telebot.apihelper.ApiException as e:
+            if "message to delete not found" in str(e):
+                continue  # Если сообщение не найдено, пропускаем
+            print(f"Ошибка при удалении сообщения {message_id - i}: {e}")
+
+    bot.send_message(chat_id, "Чат очищен!", disable_notification=True)
 
 @bot.message_handler(commands=['menu'])
 def open_menu(message):
@@ -68,7 +93,6 @@ def open_menu(message):
         bot_instance.send_menu(message.chat.id)
     else:
         bot.send_message(message.chat.id, "Сначала пройдите регистрацию с помощью /start!")
-
 
 def delete_previous_message(chat_id, message_id):
     """Удаление предыдущего сообщения"""

@@ -2,12 +2,13 @@ import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 from functional_student_code.student_menu import TelegramBot  # Импорт студенческого меню
 from connect_to_sql import SqlConnection
+from telebot.types import ForceReply
 import shutil
 
 TOKEN = "8056279378:AAGX8tILI43XHYhJrQC3JF3xUFUoyPCr9vY"
 
 bot = telebot.TeleBot(TOKEN)
-
+user_data = {}
 user_roles = {}  # Словарь для хранения ролей пользователей
 #SqlConnection.get_connection()
 conn, cursor = SqlConnection.get_connection()
@@ -16,7 +17,7 @@ if conn and cursor:
     tables = cursor.fetchall()
     print("📂 Таблицы в базе данных:", [table[0] for table in tables])
     SqlConnection.close_connection(conn, cursor)
-    
+
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     """Обработчик команды /start"""
@@ -31,6 +32,7 @@ def send_welcome(message):
         BotCommand("menu", "Открыть меню"),
         BotCommand("help", "Помощь"),
         BotCommand("meow", "Сказать meow"),
+        BotCommand("test_zapros", "теСТ"),
         BotCommand("clear", "Очистить чат")
         
     ])
@@ -44,7 +46,38 @@ def send_welcome(message):
 @bot.message_handler(commands=['help'])
 def send_help(message):
     bot.send_message(message.chat.id, "Вам никто не поможет.")
-    
+
+@bot.message_handler(commands=['test_zapros'])
+def request_student_number(message):
+    """Запрос номера зачётки у пользователя"""
+    msg = bot.send_message(message.chat.id, "Введите ваш номер зачётки:", reply_markup=ForceReply(selective=True))
+    bot.register_next_step_handler(msg, insert_student_number)
+
+def insert_student_number(message):
+    """Получает номер зачётки от пользователя и выполняет SQL-запрос"""
+    student_number = message.text.strip()  # Получаем введённое пользователем значение
+    user_data[message.chat.id] = student_number  # Сохраняем его в словаре
+
+    conn, cursor = SqlConnection.get_connection()
+
+    if conn and cursor:
+        try:
+            cursor.execute("""
+                INSERT INTO students (chat_id, student_number, surname, name, patronymic, `group`, is_headman) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (message.chat.id, student_number, 'Ятманов', 'Николай', 'Александрович', 'СИС-32', 0))
+
+            conn.commit()  # Фиксируем изменения
+            bot.send_message(message.chat.id, f"✅ Данные добавлены! Номер зачётки: {student_number}")
+
+        except Exception as e:
+            bot.send_message(message.chat.id, f"❌ Ошибка при добавлении данных: {e}")
+
+        finally:
+            SqlConnection.close_connection(conn, cursor)
+    else:
+        bot.send_message(message.chat.id, "❌ Ошибка подключения к базе данных.")
+
 @bot.message_handler(commands=['meow'])
 def send_meow(message):
     bot.send_message(message.chat.id, "meow")
@@ -65,6 +98,7 @@ def handle_student(call):
     bot_instance = TelegramBot(bot)
 
     bot_instance.send_menu(call.message.chat.id)
+
 @bot.message_handler(commands=['clear'])
 def clear_chat(message):
     """Удаляет все сообщения, отправленные ботом"""
@@ -80,6 +114,7 @@ def clear_chat(message):
             print(f"Ошибка при удалении сообщения {message_id - i}: {e}")
 
     bot.send_message(chat_id, "Чат очищен!", disable_notification=True)
+
 
 @bot.message_handler(commands=['menu'])
 def open_menu(message):

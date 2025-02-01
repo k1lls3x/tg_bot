@@ -2,11 +2,12 @@ import telebot
 from telebot.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
-    BotCommand
+    BotCommand,
+    ReplyKeyboardMarkup,
+    KeyboardButton
 )
 from functional_student_code.student_menu import TelegramBot  # Ваш модуль с меню для студента
 from sql_logic.connect_to_sql import SqlConnection
-import shutil  # Только если вам нужен функционал копирования/удаления файлов
 
 # Импортируем SQL-запросы
 from sql_logic.queries import (
@@ -22,7 +23,7 @@ bot = telebot.TeleBot(TOKEN)
 
 # Храним временно введенные данные от пользователя (например, номер зачётки)
 user_data = {}
-
+bot_last_message={}
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -48,7 +49,10 @@ def send_welcome(message):
                 # Пользователь уже есть в БД
                 role = result[0]
                 if role == 'student':
-                    bot.send_message(chat_id, "Вы уже зарегистрированы как студент! ✅\nИспользуйте /menu для открытия меню.")
+                    markup = ReplyKeyboardMarkup(resize_keyboard=True)
+                    markup.row(KeyboardButton("🏠 Главное меню"))
+
+                    bot.send_message(chat_id, "Вы уже зарегистрированы как студент! ✅\nИспользуйте /menu для открытия меню.", reply_markup=markup)
                 else:
                     bot.send_message(chat_id, "Вы уже зарегистрированы как преподаватель! ✅")
             else:
@@ -106,11 +110,17 @@ def handle_student(call):
     except Exception as e:
         bot.send_message(chat_id, f"❌ Ошибка при проверке студента: {e}")
 
-
 def request_student_number(message):
     """Запрашиваем у студента номер зачётки и сохраняем в БД."""
     chat_id = message.chat.id
     student_number = message.text.strip()
+
+    # Проверяем, что введённый номер состоит только из цифр
+    if not student_number.isdigit():
+        msg = bot.send_message(chat_id, "❌ Номер зачётки должен содержать только цифры. Попробуйте еще раз:")
+        bot.register_next_step_handler(msg, request_student_number)
+        return
+
     user_data[chat_id] = student_number
 
     try:
@@ -126,12 +136,20 @@ def request_student_number(message):
     except Exception as e:
         bot.send_message(chat_id, f"❌ Ошибка при добавлении студента: {e}")
 
-
-@bot.message_handler(commands=['menu'])
-def open_menu(message):
-    """Открывает меню в зависимости от роли пользователя (по данным БД)."""
+@bot.message_handler(func=lambda message: message.text == "🏠 Главное меню")
+def handle_main_menu(message):
     chat_id = message.chat.id
+    user_message_id = message.message_id  # ID сообщения пользователя
 
+    # Удаляем сообщение пользователя ("🏠 Главное меню")
+    delete_previous_message(chat_id, user_message_id)
+
+    # Удаляем предыдущее меню, если оно было
+    if chat_id in bot_last_message:
+        try:
+            delete_previous_message(chat_id, bot_last_message[chat_id])
+        except Exception as e:
+            print(f"Ошибка удаления последнего сообщения бота: {e}")
     try:
         with SqlConnection() as (conn, cursor):
             # Проверяем роль из БД
@@ -141,14 +159,65 @@ def open_menu(message):
             if result:
                 role = result[0]
                 if role == "student":
-                    bot_instance = TelegramBot(bot)
-                    bot_instance.send_menu(chat_id)
+              
+                    telegram_bot = TelegramBot(bot)
+                    new_message = telegram_bot.send_menu(chat_id)
+                    if new_message:
+                      bot_last_message[chat_id] = new_message.message_id
+                    else:
+                        print("❌ Ошибка: send_menu() не вернул сообщение!")
                 elif role == "teacher":
                     bot.send_message(chat_id, "Меню для преподавателя в разработке...")
             else:
+                delete_previous_message(chat_id,bot_last_message[chat_id])
                 bot.send_message(chat_id, "Сначала пройдите регистрацию командой /start.")
     except Exception as e:
-        bot.send_message(chat_id, f"❌ Ошибка при определении роли: {e}")
+        bot.send_message(chat_id, "Сначала пройдите регистрацию командой /start.")
+
+def delete_previous_message(chat_id, message_id):
+    """Функция удаления сообщения."""
+    try:
+        bot.delete_message(chat_id, message_id)
+    except Exception as e:
+        print(f"Ошибка при удалении сообщения {message_id}: {e}")
+
+@bot.message_handler(commands=['menu'])
+def open_menu(message):
+    """Открывает меню в зависимости от роли пользователя (по данным БД)."""
+    chat_id = message.chat.id
+    user_message_id = message.message_id  # ID сообщения пользователя
+
+    # Удаляем сообщение пользователя ("🏠 Главное меню")
+    delete_previous_message(chat_id, user_message_id)
+
+    if chat_id in bot_last_message:
+        try:
+            delete_previous_message(chat_id, bot_last_message[chat_id])
+        except Exception as e:
+            print(f"Ошибка удаления последнего сообщения бота: {e}")
+    try:
+        with SqlConnection() as (conn, cursor):
+            # Проверяем роль из БД
+            cursor.execute(GET_USER_ROLE, (chat_id, chat_id))
+            result = cursor.fetchone()
+
+            if result:
+                role = result[0]
+                if role == "student":
+                    telegram_bot = TelegramBot(bot)
+                    new_message = telegram_bot.send_menu(chat_id)
+                    if new_message:
+                      bot_last_message[chat_id] = new_message.message_id
+                    else:
+                        print("❌ Ошибка: send_menu() не вернул сообщение!")
+                elif role == "teacher":
+                    bot.send_message(chat_id, "Меню для преподавателя в разработке...")
+            else:
+                delete_previous_message(chat_id,bot_last_message[chat_id])
+
+                bot.send_message(chat_id, "Сначала пройдите регистрацию командой /start.")
+    except Exception as e:
+        bot.send_message(chat_id, "Сначала пройдите регистрацию командой /start.")
 
 
 @bot.message_handler(commands=['help'])
@@ -178,15 +247,6 @@ def clear_chat(message):
                 continue
 
     bot.send_message(chat_id, "Чат почищен!", disable_notification=True)
-
-
-def delete_previous_message(chat_id, message_id):
-    """Вспомогательная функция для удаления сообщения по его ID."""
-    try:
-        bot.delete_message(chat_id, message_id)
-    except Exception as e:
-        print(f"Ошибка при удалении сообщения: {e}")
-
 
 # Запуск бота
 bot.infinity_polling()

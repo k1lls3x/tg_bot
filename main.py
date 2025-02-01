@@ -223,7 +223,7 @@ def open_menu(message):
 @bot.message_handler(commands=['help'])
 def send_help(message):
     """Простейшая команда помощи."""
-    bot.send_message(message.chat.id, "Это сообщение помощи. Здесь вы можете дать подсказки пользователям.")
+    bot.send_message(message.chat.id, "Вам никто не поможет")
 
 
 @bot.message_handler(commands=['meow'])

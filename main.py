@@ -5,25 +5,24 @@ from telebot.types import (
     BotCommand
 )
 from functional_student_code.student_menu import TelegramBot  # Ваш модуль с меню для студента
-from connect_to_sql import SqlConnection
+from sql_logic.connect_to_sql import SqlConnection
 import shutil  # Только если вам нужен функционал копирования/удаления файлов
 
-TOKEN = "8056279378:AAGX8tILI43XHYhJrQC3JF3xUFUoyPCr9vY"
+# Импортируем SQL-запросы
+from sql_logic.queries import (
+    GET_USER_ROLE,
+    SELECT_TEACHER_BY_CHAT_ID,
+    INSERT_TEACHER,
+    SELECT_STUDENT_BY_CHAT_ID,
+    INSERT_STUDENT
+)
 
+TOKEN = "8056279378:AAGX8tILI43XHYhJrQC3JF3xUFUoyPCr9vY"
 bot = telebot.TeleBot(TOKEN)
 
 # Храним временно введенные данные от пользователя (например, номер зачётки)
 user_data = {}
 
-# Проверка подключения к БД и вывод списка таблиц (необязательно, но для отладки полезно)
-conn, cursor = SqlConnection.get_connection()
-if conn and cursor:
-    cursor.execute("SHOW TABLES;")
-    tables = cursor.fetchall()
-    print("📂 Таблицы в базе данных:", [table[0] for table in tables])
-    SqlConnection.close_connection(conn, cursor)
-else:
-    print("❌ Ошибка подключения к базе данных.")
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -39,15 +38,10 @@ def send_welcome(message):
         BotCommand("clear", "Очистить чат"),
     ])
 
-    conn, cursor = SqlConnection.get_connection()
-    if conn and cursor:
-        try:
+    try:
+        with SqlConnection() as (conn, cursor):
             # Проверяем, есть ли пользователь в таблице студентов или преподавателей
-            cursor.execute("""
-                SELECT 'student' AS role FROM students WHERE chat_id = %s
-                UNION
-                SELECT 'teacher' AS role FROM teachers WHERE chat_id = %s
-            """, (chat_id, chat_id))
+            cursor.execute(GET_USER_ROLE, (chat_id, chat_id))
             result = cursor.fetchone()
 
             if result:
@@ -66,45 +60,30 @@ def send_welcome(message):
                 )
                 bot.send_message(chat_id, "Добро пожаловать! Выберите вашу роль:", reply_markup=markup)
 
-        except Exception as e:
-            bot.send_message(chat_id, f"❌ Ошибка при проверке данных: {e}")
-        finally:
-            SqlConnection.close_connection(conn, cursor)
-    else:
-        bot.send_message(chat_id, "❌ Ошибка подключения к базе данных.")
+    except Exception as e:
+        bot.send_message(chat_id, f"❌ Ошибка при проверке данных: {e}")
 
-def IsEmpty():
-    return False
-assert(IsEmpty() == False)
 
 @bot.callback_query_handler(func=lambda call: call.data == "teacher_button")
 def handle_teacher(call):
     """Обработчик кнопки 'Преподаватель'."""
     chat_id = call.message.chat.id
 
-    conn, cursor = SqlConnection.get_connection()
-    if conn and cursor:
-        try:
+    try:
+        with SqlConnection() as (conn, cursor):
             # Проверяем, не записан ли уже пользователь как преподаватель
-            cursor.execute("SELECT * FROM teachers WHERE chat_id = %s", (chat_id,))
+            cursor.execute(SELECT_TEACHER_BY_CHAT_ID, (chat_id,))
             existing_teacher = cursor.fetchone()
 
             if existing_teacher:
                 bot.send_message(chat_id, "Вы уже зарегистрированы как преподаватель! ✅")
             else:
                 # Регистрируем нового преподавателя (данные пока примерные)
-                cursor.execute("""
-                    INSERT INTO teachers (chat_id, surname, name, patronymic, is_verified)
-                    VALUES (%s, %s, %s, %s, %s)
-                """, (chat_id, "Фамилия", "Имя", "Отчество", 0))
+                cursor.execute(INSERT_TEACHER, (chat_id, "Фамилия", "Имя", "Отчество", 0))
                 conn.commit()
                 bot.send_message(chat_id, "✅ Вы успешно зарегистрированы как преподаватель!")
-        except Exception as e:
-            bot.send_message(chat_id, f"❌ Ошибка при добавлении преподавателя: {e}")
-        finally:
-            SqlConnection.close_connection(conn, cursor)
-    else:
-        bot.send_message(chat_id, "❌ Ошибка подключения к базе данных.")
+    except Exception as e:
+        bot.send_message(chat_id, f"❌ Ошибка при добавлении преподавателя: {e}")
 
 
 @bot.callback_query_handler(func=lambda call: call.data == "student_button")
@@ -112,11 +91,10 @@ def handle_student(call):
     """Обработчик кнопки 'Студент'."""
     chat_id = call.message.chat.id
 
-    conn, cursor = SqlConnection.get_connection()
-    if conn and cursor:
-        try:
+    try:
+        with SqlConnection() as (conn, cursor):
             # Проверяем, не записан ли уже пользователь как студент
-            cursor.execute("SELECT * FROM students WHERE chat_id = %s", (chat_id,))
+            cursor.execute(SELECT_STUDENT_BY_CHAT_ID, (chat_id,))
             existing_student = cursor.fetchone()
 
             if existing_student:
@@ -125,12 +103,8 @@ def handle_student(call):
                 # Если не зарегистрирован, просим ввести номер зачётки
                 msg = bot.send_message(chat_id, "Введите ваш номер зачётки:")
                 bot.register_next_step_handler(msg, request_student_number)
-        except Exception as e:
-            bot.send_message(chat_id, f"❌ Ошибка при проверке студента: {e}")
-        finally:
-            SqlConnection.close_connection(conn, cursor)
-    else:
-        bot.send_message(chat_id, "❌ Ошибка подключения к базе данных.")
+    except Exception as e:
+        bot.send_message(chat_id, f"❌ Ошибка при проверке студента: {e}")
 
 
 def request_student_number(message):
@@ -139,23 +113,18 @@ def request_student_number(message):
     student_number = message.text.strip()
     user_data[chat_id] = student_number
 
-    conn, cursor = SqlConnection.get_connection()
-    if conn and cursor:
-        try:
+    try:
+        with SqlConnection() as (conn, cursor):
             # Заполняем базовыми данными (при необходимости спросите ФИО, группу и т.д.)
-            cursor.execute("""
-                INSERT INTO students (chat_id, student_number, surname, name, patronymic, `group`, is_headman)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
-            """, (chat_id, student_number, 'Фамилия', 'Имя', 'Отчество', 'Группа', 0))
+            cursor.execute(
+                INSERT_STUDENT,
+                (chat_id, student_number, 'Фамилия', 'Имя', 'Отчество', 'Группа', 0)
+            )
             conn.commit()
             bot.send_message(chat_id, f"✅ Данные сохранены! Ваш номер зачётки: {student_number}\nТеперь вы можете открыть меню командой /menu.")
 
-        except Exception as e:
-            bot.send_message(chat_id, f"❌ Ошибка при добавлении студента: {e}")
-        finally:
-            SqlConnection.close_connection(conn, cursor)
-    else:
-        bot.send_message(chat_id, "❌ Ошибка подключения к базе данных.")
+    except Exception as e:
+        bot.send_message(chat_id, f"❌ Ошибка при добавлении студента: {e}")
 
 
 @bot.message_handler(commands=['menu'])
@@ -163,15 +132,10 @@ def open_menu(message):
     """Открывает меню в зависимости от роли пользователя (по данным БД)."""
     chat_id = message.chat.id
 
-    # Проверяем роль из БД
-    conn, cursor = SqlConnection.get_connection()
-    if conn and cursor:
-        try:
-            cursor.execute("""
-                SELECT 'student' AS role FROM students WHERE chat_id = %s
-                UNION
-                SELECT 'teacher' AS role FROM teachers WHERE chat_id = %s
-            """, (chat_id, chat_id))
+    try:
+        with SqlConnection() as (conn, cursor):
+            # Проверяем роль из БД
+            cursor.execute(GET_USER_ROLE, (chat_id, chat_id))
             result = cursor.fetchone()
 
             if result:
@@ -183,12 +147,8 @@ def open_menu(message):
                     bot.send_message(chat_id, "Меню для преподавателя в разработке...")
             else:
                 bot.send_message(chat_id, "Сначала пройдите регистрацию командой /start.")
-        except Exception as e:
-            bot.send_message(chat_id, f"❌ Ошибка при определении роли: {e}")
-        finally:
-            SqlConnection.close_connection(conn, cursor)
-    else:
-        bot.send_message(chat_id, "❌ Ошибка подключения к базе данных.")
+    except Exception as e:
+        bot.send_message(chat_id, f"❌ Ошибка при определении роли: {e}")
 
 
 @bot.message_handler(commands=['help'])

@@ -8,6 +8,7 @@ from telebot.types import (
 )
 from functional_student_code.student_menu import TelegramBot  # Ваш модуль с меню для студента
 from sql_logic.connect_to_sql import SqlConnection
+from functional_student_code.student_registration import request_student_number, request_full_name, request_group
 
 # Импортируем SQL-запросы
 from sql_logic.queries import (
@@ -65,7 +66,7 @@ def send_welcome(message):
                 bot.send_message(chat_id, "Добро пожаловать! Выберите вашу роль:", reply_markup=markup)
 
     except Exception as e:
-        bot.send_message(chat_id, f"❌ Ошибка при проверке данных: {e}")
+        bot.send_message(chat_id, f"❌ Ошибка при проверке данных.")
 
 
 @bot.callback_query_handler(func=lambda call: call.data == "teacher_button")
@@ -87,54 +88,25 @@ def handle_teacher(call):
                 conn.commit()
                 bot.send_message(chat_id, "✅ Вы успешно зарегистрированы как преподаватель!")
     except Exception as e:
-        bot.send_message(chat_id, f"❌ Ошибка при добавлении преподавателя: {e}")
+        bot.send_message(chat_id, f"❌ Произошла ошибка. Попробуйте позднее")
 
 
 @bot.callback_query_handler(func=lambda call: call.data == "student_button")
 def handle_student(call):
-    """Обработчик кнопки 'Студент'."""
     chat_id = call.message.chat.id
-
     try:
         with SqlConnection() as (conn, cursor):
-            # Проверяем, не записан ли уже пользователь как студент
             cursor.execute(SELECT_STUDENT_BY_CHAT_ID, (chat_id,))
             existing_student = cursor.fetchone()
 
             if existing_student:
                 bot.send_message(chat_id, "Вы уже зарегистрированы как студент! ✅\nИспользуйте /menu для открытия меню.")
             else:
-                # Если не зарегистрирован, просим ввести номер зачётки
                 msg = bot.send_message(chat_id, "Введите ваш номер зачётки:")
-                bot.register_next_step_handler(msg, request_student_number)
+                # Передаём bot как аргумент в функцию
+                bot.register_next_step_handler(msg, lambda m: request_student_number(m, bot))
     except Exception as e:
-        bot.send_message(chat_id, f"❌ Ошибка при проверке студента: {e}")
-
-def request_student_number(message):
-    """Запрашиваем у студента номер зачётки и сохраняем в БД."""
-    chat_id = message.chat.id
-    student_number = message.text.strip()
-
-    # Проверяем, что введённый номер состоит только из цифр
-    if not student_number.isdigit():
-        msg = bot.send_message(chat_id, "❌ Номер зачётки должен содержать только цифры. Попробуйте еще раз:")
-        bot.register_next_step_handler(msg, request_student_number)
-        return
-
-    user_data[chat_id] = student_number
-
-    try:
-        with SqlConnection() as (conn, cursor):
-            # Заполняем базовыми данными (при необходимости спросите ФИО, группу и т.д.)
-            cursor.execute(
-                INSERT_STUDENT,
-                (chat_id, student_number, 'Фамилия', 'Имя', 'Отчество', 'Группа', 0)
-            )
-            conn.commit()
-            bot.send_message(chat_id, f"✅ Данные сохранены! Ваш номер зачётки: {student_number}\nТеперь вы можете открыть меню командой /menu.")
-
-    except Exception as e:
-        bot.send_message(chat_id, f"❌ Ошибка при добавлении студента: {e}")
+        bot.send_message(chat_id, f"❌ Произошла ошибка. Попробуйте позднее")
 
 @bot.message_handler(func=lambda message: message.text == "🏠 Главное меню")
 def handle_main_menu(message):
@@ -229,7 +201,7 @@ def send_help(message):
 @bot.message_handler(commands=['meow'])
 def send_meow(message):
     """Пример дополнительной команды."""
-    bot.send_message(message.chat.id, "meow")
+    bot.send_message(message.chat.id, "Ты еблан? Тг боты не мяукают.")
 
 
 @bot.message_handler(commands=['clear'])
@@ -246,7 +218,7 @@ def clear_chat(message):
             if "message to delete not found" in str(e):
                 continue
 
-    bot.send_message(chat_id, "Чат почищен!", disable_notification=True)
+    bot.send_message(chat_id, "Чат очищен!", disable_notification=True)
 
 # Запуск бота
 bot.infinity_polling()

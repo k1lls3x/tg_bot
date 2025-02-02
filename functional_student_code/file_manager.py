@@ -4,7 +4,7 @@ import requests
 import zipfile
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-folder_path = r"D:\\"  # Корневая папка по умолчанию
+folder_path = r"D:\\test"  # Корневая папка по умолчанию
 path_dict = {}
 
 def get_unique_id(path):
@@ -103,10 +103,8 @@ class FileManagerBot:
                 logging.error(f"Ошибка при создании архива: {e}")
                 self.bot.send_message(call.message.chat.id, f"Произошла ошибка: {e}")
 
+
     def send_folder_contents(self, chat_id, message_id=None, current_path=None):
-        """
-        Отправляет список файлов/папок в выбранном каталоге.
-        """
         try:
             if current_path is None:
                 current_path = folder_path
@@ -134,15 +132,13 @@ class FileManagerBot:
                     icon = self.get_file_icon(full_path)
                     markup.add(InlineKeyboardButton(f"{icon} {item}", callback_data=f"file::{unique_id}"))
 
-            # Кнопка "Назад", если есть родительская папка
-            parent_folder = os.path.dirname(current_path)
-            if parent_folder != current_path:
-                parent_id = get_unique_id(parent_folder)
-                if parent_id:
+            # Отображаем кнопку "Назад" только если текущая папка не является корневой
+            if os.path.abspath(current_path) != os.path.abspath(folder_path):
+                parent_folder = os.path.dirname(current_path)
+                # Проверяем, что родительская папка находится внутри корневой
+                if os.path.abspath(parent_folder).startswith(os.path.abspath(folder_path)):
+                    parent_id = get_unique_id(parent_folder)
                     markup.add(InlineKeyboardButton("⬅ Назад", callback_data=f"folder::{parent_id}"))
-
-            # Кнопка "Главное меню"
-            markup.add(InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu"))
 
             # Кнопка "Создать архив" - вшиваем текущую папку
             current_path_uid = get_unique_id(current_path)
@@ -157,7 +153,6 @@ class FileManagerBot:
             text_message = f"Содержимое папки: {current_path}"
             
             if message_id:
-                # Удаляем старое сообщение с клавиатурой, чтобы не плодить разные меню
                 try:
                     self.bot.delete_message(chat_id, message_id)
                 except Exception as e:
@@ -169,6 +164,8 @@ class FileManagerBot:
         except Exception as e:
             logging.error(f"Ошибка отображения содержимого папки {current_path}: {e}")
             self.bot.send_message(chat_id, "Произошла ошибка при открытии папки.")
+
+   
 
     def get_file_icon(self, path):
         """
@@ -211,6 +208,10 @@ class FileManagerBot:
 
             if not path or not os.path.isfile(path):
                 self.bot.answer_callback_query(call.id, "Файл недоступен")
+                return
+            file_size = os.path.getsize(path)
+            if file_size == 0:
+                self.bot.send_message(call.message.chat.id, "Файл пустой и не может быть отправлен.")
                 return
 
             file_size = os.path.getsize(path)

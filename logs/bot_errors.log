@@ -94,3 +94,272 @@ TypeError: FileManagerBot.__init__() takes 2 positional arguments but 3 were giv
 2025-01-28 20:15:10,092 - ERROR - ������ ����������� ����������� ����� F:\\: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: there is no text in the message to edit
 2025-01-28 20:22:10,033 - ERROR - Infinity polling: polling exited
 2025-01-28 20:22:10,033 - ERROR - Break infinity polling
+2025-02-03 12:31:17,483 - ERROR - \u274c ������ �����������: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:31:55,954 - ERROR - \u274c ������ �����������: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:31:56,116 - ERROR - \u274c ������ �������� ������ � ���� - 852297440 
+ ��� ������:  2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting) 
+2025-02-03 12:32:54,041 - ERROR - Infinity polling: polling exited
+2025-02-03 12:32:54,042 - ERROR - Break infinity polling
+2025-02-03 12:32:55,263 - ERROR - Привет! Это тест ошибки с кириллицей.
+2025-02-03 12:33:00,360 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:33:00,596 - ERROR - ❌ Ошибка проверки данных в чате - 852297440 
+ код ошибки:  2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting) 
+2025-02-03 12:33:13,621 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:33:13,833 - ERROR - ❌ Ошибка проверки данных в чате - 852297440 
+ код ошибки:  2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting) 
+2025-02-03 12:36:10,807 - ERROR - Infinity polling: polling exited
+2025-02-03 12:36:10,808 - ERROR - Break infinity polling
+2025-02-03 12:41:35,156 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:43:12,509 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:32,649 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:32,649 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:38,094 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:38,368 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:54,424 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:54,424 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:57,656 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:45:57,656 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:00,307 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:00,308 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:09,486 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:09,667 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:16,504 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:16,504 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:19,958 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:19,958 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:21,811 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:21,811 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:24,314 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:24,315 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:25,715 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:25,716 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:26,788 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:26,788 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:27,954 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:27,954 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:58,974 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:46:59,316 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:06,023 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:06,023 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:12,351 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:12,351 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:16,792 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:16,792 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:19,443 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:19,443 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:20,859 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:21,094 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-02-03 12:47:24,658 - ERROR - Infinity polling: polling exited
+2025-02-03 12:47:24,660 - ERROR - Break infinity polling
+2025-02-03 12:57:16,322 - ERROR - Infinity polling exception: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8056279378:***********************************/deleteMessage?chat_id=862035816&message_id=2477 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000284143B0A50>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)"))
+2025-02-03 12:57:16,330 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\socket.py", line 975, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x00000284143B0A50>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8056279378:***********************************/deleteMessage?chat_id=862035816&message_id=2477 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000284143B0A50>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 logger_level=logger_level, allowed_updates=allowed_updates, restart_on_change=False,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 *args, **kwargs)
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "c:\Users\killa\Desktop\tg_bot\main.py", line 195, in clear_chat
+    bot.delete_message(chat_id, message_id - i)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1989, in delete_message
+    return apihelper.delete_message(self.token, chat_id, message_id, timeout=timeout)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\apihelper.py", line 1582, in delete_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\apihelper.py", line 162, in _make_request
+    result = _get_req_session().request(
+        method, request_url, params=params, files=files,
+        timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8056279378:***********************************/deleteMessage?chat_id=862035816&message_id=2477 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000284143B0A50>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)"))
+
+2025-02-03 12:57:19,335 - ERROR - Infinity polling exception: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8056279378:***********************************/deleteMessage?chat_id=862035816&message_id=2475 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000284143B16D0>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)"))
+2025-02-03 12:57:19,348 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\socket.py", line 975, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x00000284143B16D0>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8056279378:***********************************/deleteMessage?chat_id=862035816&message_id=2475 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000284143B16D0>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 logger_level=logger_level, allowed_updates=allowed_updates, restart_on_change=False,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 *args, **kwargs)
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            logger_level=logger_level, allowed_updates=allowed_updates)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 9233, in _run_middlewares_and_handler
+    result = handler['function'](message)
+  File "c:\Users\killa\Desktop\tg_bot\main.py", line 195, in clear_chat
+    bot.delete_message(chat_id, message_id - i)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\__init__.py", line 1989, in delete_message
+    return apihelper.delete_message(self.token, chat_id, message_id, timeout=timeout)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\apihelper.py", line 1582, in delete_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\telebot\apihelper.py", line 162, in _make_request
+    result = _get_req_session().request(
+        method, request_url, params=params, files=files,
+        timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\killa\AppData\Roaming\Python\Python313\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8056279378:***********************************/deleteMessage?chat_id=862035816&message_id=2475 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000284143B16D0>: Failed to resolve 'api.telegram.org' ([Errno 11001] getaddrinfo failed)"))
+

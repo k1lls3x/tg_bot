@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class SqlConnection:
-    DB_CONFIG = {
+    DB_CONFIG = {                   
         "host": "localhost",
         "user": "root",
         "password": "(AEvoWl(TC#gJk}|",

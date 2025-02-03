@@ -4,7 +4,7 @@ import requests
 import zipfile
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-folder_path = r"D:\\test"  # Корневая папка по умолчанию
+folder_path = r"A:\\test"  # Корневая папка по умолчанию
 path_dict = {}
 
 def get_unique_id(path):
@@ -62,11 +62,11 @@ class FileManagerBot:
                     current_folder_path = folder_path
 
                 if not os.path.exists(current_folder_path):
-                    self.bot.send_message(call.message.chat.id, "Папка для архивации не найдена.")
+                    self.bot.send_message(call.message.chat.id, "❌ Произошла ошибка. Попробуйте позднее")
                     return
 
                 if not os.path.isdir(current_folder_path):
-                    self.bot.send_message(call.message.chat.id, "Указанный путь не является директорией.")
+                    self.bot.send_message(call.message.chat.id, "❌ Произошла ошибка. Попробуйте позднее")
                     return
 
                 # Получаем название папки (если архивируем корень диска, задаём стандартное имя)
@@ -89,7 +89,7 @@ class FileManagerBot:
 
                 # Проверяем, создался ли архив
                 if not os.path.exists(archive_path):
-                    self.bot.send_message(call.message.chat.id, "Ошибка: архив не был создан.")
+                    self.bot.send_message(call.message.chat.id, "❌ Произошла ошибка. Попробуйте позднее")
                     return
 
                 # Отправляем архив пользователю
@@ -163,7 +163,7 @@ class FileManagerBot:
         
         except Exception as e:
             logging.error(f"Ошибка отображения содержимого папки {current_path}: {e}")
-            self.bot.send_message(chat_id, "Произошла ошибка при открытии папки.")
+            self.bot.send_message(chat_id, "❌ Произошла ошибка при открытии папки.")
 
    
 
@@ -194,7 +194,7 @@ class FileManagerBot:
                     path
                 )
             else:
-                self.bot.answer_callback_query(call.id, "Папка не найдена!")
+                self.bot.answer_callback_query(call.id, "❌ Папка не найдена!")
         except Exception as e:
             logging.error(f"Ошибка обработки папки: {e}")
 
@@ -207,17 +207,17 @@ class FileManagerBot:
             path = path_dict.get(uid)
 
             if not path or not os.path.isfile(path):
-                self.bot.answer_callback_query(call.id, "Файл недоступен")
+                self.bot.answer_callback_query(call.id, "❌ Файл недоступен")
                 return
             file_size = os.path.getsize(path)
             if file_size == 0:
-                self.bot.send_message(call.message.chat.id, "Файл пустой и не может быть отправлен.")
+                self.bot.send_message(call.message.chat.id, "❌ Файл пустой и не может быть отправлен.")
                 return
 
             file_size = os.path.getsize(path)
             # Telegram не даёт отправлять файлы > 2 ГБ
             if file_size > 2000 * 1024 * 1024:
-                self.bot.send_message(call.message.chat.id, "Файл слишком большой для Telegram (макс. 2 ГБ)")
+                self.bot.send_message(call.message.chat.id, "❌ Файл слишком большой для Telegram (макс. 2 ГБ)")
                 return
 
             url = f"https://api.telegram.org/bot{self.bot.token}/sendDocument"
@@ -229,11 +229,11 @@ class FileManagerBot:
                 )
 
             if response.status_code == 200:
-                self.bot.answer_callback_query(call.id, "Файл отправлен!")
+                self.bot.answer_callback_query(call.id, "✅ Файл отправлен!")
             else:
-                logging.error(f"Ошибка загрузки файла: {response.text}")
-                self.bot.send_message(call.message.chat.id, "Ошибка отправки файла")
+                logging.error(f"❌ Ошибка загрузки файла: {response.text}")
+                self.bot.send_message(call.message.chat.id, "❌ Ошибка отправки файла")
         
         except Exception as e:
             logging.error(f"Ошибка отправки файла: {e}")
-            self.bot.send_message(call.message.chat.id, "Ошибка при отправке файла")
+            self.bot.send_message(call.message.chat.id, "❌ Ошибка при отправке файла")

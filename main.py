@@ -24,7 +24,6 @@ TOKEN = "8056279378:AAGX8tILI43XHYhJrQC3JF3xUFUoyPCr9vY"
 bot = telebot.TeleBot(TOKEN)
 log = Logs()  # Создаём объект логирования
 
-# Храним временно введенные данные от пользователя (например, номер зачётки)
 user_data = {}
 bot_last_message = {}
 
@@ -32,15 +31,23 @@ bot_last_message = {}
 def send_welcome(message):
     """Обработчик команды /start — проверка роли пользователя и/или регистрация."""
     chat_id = message.chat.id
-
+  
+     
     bot.set_my_commands([
         BotCommand("start", "Перезапуск бота"),
         BotCommand("menu", "Открыть меню"),
         BotCommand("help", "Помощь"),
         BotCommand("meow", "Сказать meow"),
         BotCommand("clear", "Очистить чат"),
-    ])
+        ])
+    
+    
+   
+    
 
+    # if message.chat.id == 1164837622:
+    #     bot.send_message(chat_id, "Чипман")
+    #     return
     try:
         with SqlConnection() as (conn, cursor):
             cursor.execute(GET_USER_ROLE, (chat_id, chat_id))
@@ -184,6 +191,7 @@ def send_help(message):
 @bot.message_handler(commands=['meow'])
 def send_meow(message):
     bot.send_message(message.chat.id, "Ты еблан? Тг боты не мяукают.")
+
 
 @bot.message_handler(commands=['clear'])
 def clear_chat(message):

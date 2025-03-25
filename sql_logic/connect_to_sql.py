@@ -8,9 +8,10 @@ class SqlConnection:
     DB_CONFIG = {                   
         "host": "localhost",
         "user": "root",
-        "password": "(AEvoWl(TC#gJk}|",
-        "database": "keup"  # Имя базы данных (без .sql!)
+        "password": "7R8M$JG%=~v~%Z&",
+        "database": "keup"  
     }
+ #   (AEvoWl(TC#gJk}|
 
     def __init__(self):
         self.conn = None

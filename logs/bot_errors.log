@@ -1,0 +1,80 @@
+2025-03-30 22:55:22,839 - ERROR - ❌ Ошибка подключения: 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-03-30 22:55:22,839 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 2002: Can't connect to local MySQL server through socket '%-.100s' (%s) (Warning: not all arguments converted during string formatting)
+2025-03-30 22:56:38,694 - ERROR - Infinity polling: polling exited
+2025-03-30 22:56:38,694 - ERROR - Break infinity polling
+2025-03-30 22:56:45,702 - ERROR - ❌ Ошибка подключения: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-03-30 22:56:45,703 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-03-30 22:56:46,508 - ERROR - ❌ Ошибка подключения: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-03-30 22:56:46,508 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-03-30 22:56:49,791 - ERROR - ❌ Ошибка подключения: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-03-30 22:56:49,886 - ERROR - ❌ Ошибка проверки данных в чате - 852297440. Код ошибки: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-03-30 22:57:41,887 - ERROR - Infinity polling: polling exited
+2025-03-30 22:57:41,887 - ERROR - Break infinity polling
+2025-03-30 23:02:40,522 - ERROR - Infinity polling: polling exited
+2025-03-30 23:02:40,522 - ERROR - Break infinity polling
+2025-03-30 23:04:10,662 - ERROR - Ошибка обработки главного меню (Chat ID: 852297440): 852297440
+2025-03-30 23:04:20,527 - ERROR - Infinity polling: polling exited
+2025-03-30 23:04:20,527 - ERROR - Break infinity polling
+2025-03-30 23:08:13,852 - ERROR - Infinity polling exception: name 'request_student_number' is not defined
+2025-03-30 23:08:13,857 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "c:\Users\mista\Desktop\tg_bot\main.py", line 102, in <lambda>
+    bot.register_next_step_handler(msg, lambda m: request_student_number(m, bot))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'request_student_number' is not defined
+
+2025-03-30 23:08:23,811 - ERROR - Infinity polling exception: name 'request_student_number' is not defined
+2025-03-30 23:08:23,813 - ERROR - Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1110, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1198, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1273, in __threaded_polling
+    raise e
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\__init__.py", line 1235, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 150, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\mista\AppData\Roaming\Python\Python312\site-packages\telebot\util.py", line 93, in run
+    task(*args, **kwargs)
+  File "c:\Users\mista\Desktop\tg_bot\main.py", line 102, in <lambda>
+    bot.register_next_step_handler(msg, lambda m: request_student_number(m, bot))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'request_student_number' is not defined
+
+2025-03-30 23:09:02,090 - ERROR - Infinity polling: polling exited
+2025-03-30 23:09:02,090 - ERROR - Break infinity polling
+2025-03-30 23:11:35,805 - ERROR - Ошибка открытия меню (Chat ID: 852297440): 852297440
+2025-03-30 23:13:13,108 - ERROR - Infinity polling: polling exited
+2025-03-30 23:13:13,108 - ERROR - Break infinity polling
+2025-03-30 23:21:06,378 - ERROR - Infinity polling: polling exited
+2025-03-30 23:21:06,378 - ERROR - Break infinity polling
+2025-03-30 23:23:33,788 - ERROR - Infinity polling: polling exited
+2025-03-30 23:23:33,788 - ERROR - Break infinity polling
+2025-03-30 23:27:41,235 - ERROR - Infinity polling: polling exited
+2025-03-30 23:27:41,235 - ERROR - Break infinity polling
+2025-03-30 23:31:47,134 - ERROR - Infinity polling: polling exited
+2025-03-30 23:31:47,135 - ERROR - Break infinity polling
+2025-03-30 23:34:28,248 - ERROR - Infinity polling: polling exited
+2025-03-30 23:34:28,249 - ERROR - Break infinity polling
+2025-03-30 23:34:56,426 - ERROR - Infinity polling: polling exited
+2025-03-30 23:34:56,427 - ERROR - Break infinity polling
+2025-03-30 23:40:01,803 - ERROR - Infinity polling: polling exited
+2025-03-30 23:40:01,803 - ERROR - Break infinity polling
+2025-03-30 23:44:00,641 - ERROR - Infinity polling: polling exited
+2025-03-30 23:44:00,641 - ERROR - Break infinity polling
+2025-03-31 00:09:31,337 - ERROR - Infinity polling: polling exited
+2025-03-31 00:09:31,337 - ERROR - Break infinity polling

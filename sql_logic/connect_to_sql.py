@@ -5,14 +5,14 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class SqlConnection:
-    DB_CONFIG = {                   
+    DB_CONFIG = {
         "host": "localhost",
         "user": "root",
-        "password": "7R8M$JG%=~v~%Z&",
-        "database": "keup"  
+        "password": "root",
+        "database": "keup"
     }
  #   (AEvoWl(TC#gJk}|
-
+# 7R8M$JG%=~v~%Z&
     def __init__(self):
         self.conn = None
         self.cursor = None

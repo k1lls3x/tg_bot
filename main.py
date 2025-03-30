@@ -6,9 +6,9 @@ from telebot.types import (
     ReplyKeyboardMarkup,
     KeyboardButton
 )
-from functional_student_code.student_menu import TelegramBot  
+from functional_student_code.student_menu import TelegramBot
 from sql_logic.connect_to_sql import SqlConnection
-from functional_student_code.student_registration import request_student_number, request_full_name, request_group
+from functional_student_code.student_registration import start_registration, request_full_name, request_group
 from logs.log_settings import Logs  # Импортируем кастомный логгер
 
 # Импортируем SQL-запросы
@@ -31,8 +31,6 @@ bot_last_message = {}
 def send_welcome(message):
     """Обработчик команды /start — проверка роли пользователя и/или регистрация."""
     chat_id = message.chat.id
-  
-     
     bot.set_my_commands([
         BotCommand("start", "Перезапуск бота"),
         BotCommand("menu", "Открыть меню"),
@@ -40,11 +38,6 @@ def send_welcome(message):
         BotCommand("meow", "Сказать meow"),
         BotCommand("clear", "Очистить чат"),
         ])
-    
-    
-   
-    
-
     # if message.chat.id == 1164837622:
     #     bot.send_message(chat_id, "Чипман")
     #     return
@@ -103,10 +96,10 @@ def handle_student(call):
             if existing_student:
                 bot.send_message(chat_id, "Вы уже зарегистрированы как студент! ✅\nИспользуйте /menu для открытия меню.")
             else:
-                msg = bot.send_message(chat_id, "Введите ваш номер зачётки:")
-                bot.register_next_step_handler(msg, lambda m: request_student_number(m, bot))
+                start_registration(call.message, bot)
     except Exception as e:
         log.error(f"Ошибка регистрации студента (Chat ID: {chat_id}): {e}")
+
 
 @bot.message_handler(func=lambda message: message.text == "🏠 Главное меню")
 def handle_main_menu(message):
@@ -191,8 +184,13 @@ def send_help(message):
 @bot.message_handler(commands=['meow'])
 def send_meow(message):
     bot.send_message(message.chat.id, "Ты еблан? Тг боты не мяукают.")
+    bot.send_message(1164837622, "Привет чапман, сосал? меня заставляют делать эту хуйню")
+    bot.send_message(1164837622, "понимаешь я не хочу это ебашить")
+    bot.send_message(1164837622, "кстати,если ты еблан и отвечаешь на эти сообщения то ты еблан внатуре я их не вижу")
+    bot.send_message(1164837622, "Я НЕ ХОЧУ ЭТОГО Я ХОЧУ С++ ВЫЗВОЛИТЕ ИЗ РАБСТВА")
 
-
+    #bot.send_message(852297440, "Привет чапман, сосал? меня заставляют делать эту хуйню")
+    
 @bot.message_handler(commands=['clear'])
 def clear_chat(message):
     chat_id = message.chat.id

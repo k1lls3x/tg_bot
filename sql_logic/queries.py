@@ -9,18 +9,25 @@ GET_USER_ROLE = """
 
 # Запрос для проверки существования преподавателя
 SELECT_TEACHER_BY_CHAT_ID = "SELECT * FROM teachers WHERE chat_id = %s"
-
+INSERT_STUDENT = """
+INSERT INTO students (chat_id, Surname, Name, Patronymic, GroupName, IsLeader)
+VALUES (%s, %s, %s, %s, %s, 0)
+"""
 # Запрос для регистрации нового преподавателя
 INSERT_TEACHER = """
     INSERT INTO teachers (chat_id, surname, name, patronymic, is_verified)
     VALUES (%s, %s, %s, %s, %s)
 """
-
 # Запрос для проверки существования студента
 SELECT_STUDENT_BY_CHAT_ID = "SELECT * FROM students WHERE chat_id = %s"
 
 # Запрос для регистрации нового студента
 INSERT_STUDENT = """
-    INSERT INTO students (chat_id, student_number, surname, name, patronymic, `group`, is_headman)
-    VALUES (%s, %s, %s, %s, %s, %s, %s)
+INSERT INTO students (chat_id, Surname, Name, Patronymic, GroupName, IsLeader)
+VALUES (%s, %s, %s, %s, %s, 0)
+"""
+
+INSERT_APPLICATION = """
+INSERT INTO applications (chat_id, Surname, Name, Patronymic, Position)
+VALUES (%s, %s, %s, %s, %s)
 """
